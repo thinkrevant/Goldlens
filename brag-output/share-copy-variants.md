@@ -23,7 +23,7 @@ Team TechFast: Revant Raj
 
 @Eren @BuilderBase @Nexido @Web3 India
 
-GitHub: <add link>
+GitHub: https://github.com/thinkrevant/Goldlens
 
 #HackInHills #TinyFish #FinTech #MCX #Gold #Hackathon #BuildInPublic
 ```
@@ -36,7 +36,7 @@ Most backtests lie. Ours turned ₹25.75 lakh of paper profit into a −₹3,493
 GoldLens: honest intelligence for MCX gold futures. It even busts "guaranteed" tips.
 
 Hack in Hills, powered by TinyFish 🧵
-<GitHub link>
+https://github.com/thinkrevant/Goldlens
 ```
 
 Optional reply to post under it:
