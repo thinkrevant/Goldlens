@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1920, height=1080" />
+<title>GoldLens · elevator pitch</title>
+<script src="assets/js/gsap.min.js"></script>
+<style>
+@font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+@font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+@font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+@font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-800-normal.woff2") format("woff2"); font-weight: 800; }
+@font-face { font-family: "Inter"; src: url("assets/fonts/inter-latin-900-normal.woff2") format("woff2"); font-weight: 900; }
+@font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+@font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/jetbrains-mono-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+</style>
+<style>
+/* GoldLens app components, verbatim from goldlens/ui.py */
+__COMPONENT_CSS__
+</style>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; animation: none !important; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #07090F; }
+body { color: #E9EBF0; font-family: "Inter", sans-serif; -webkit-font-smoothing: antialiased; }
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #07090F; }
+.clip { position: absolute; inset: 0; }
+.sc { position: absolute; inset: 0; }
+.h1 .ln, .h2 .ln { display: block; }
+#s4 .gauge .mk { transform: none; margin-left: -7px; margin-top: -7px; }
+.mono { font-family: "JetBrains Mono", monospace; font-variant-numeric: tabular-nums; }
+
+/* persistent background */
+#bg .glow { position: absolute; width: 1400px; height: 1400px; border-radius: 50%; right: -380px; top: -620px;
+  background: radial-gradient(circle, rgba(224,176,74,.20), rgba(224,176,74,0) 62%); }
+#bg .glow2 { position: absolute; width: 1200px; height: 1200px; border-radius: 50%; left: -520px; bottom: -640px;
+  background: radial-gradient(circle, rgba(91,141,239,.13), rgba(91,141,239,0) 62%); }
+#bg .grid { position: absolute; inset: 0; opacity: .5;
+  background-image: linear-gradient(rgba(34,43,58,.55) 1px, transparent 1px), linear-gradient(90deg, rgba(34,43,58,.55) 1px, transparent 1px);
+  background-size: 120px 120px; mask-image: radial-gradient(ellipse at 50% 45%, #000 30%, transparent 78%); }
+#bg .meta { position: absolute; bottom: 44px; right: 72px; font-family: "JetBrains Mono", monospace; font-size: 20px; color: #8A93A6; letter-spacing: .08em; }
+
+/* corner brand (scenes 2-7) */
+#brand { display: block; }
+#brand .b { position: absolute; top: 52px; left: 72px; display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 30px; color: #E9EBF0; }
+#brand .b img { width: 42px; height: 42px; }
+#brand .tag { position: absolute; top: 60px; right: 72px; font-family: "JetBrains Mono", monospace; font-size: 20px; color: #8A93A6; letter-spacing: .1em; }
+
+.eyebrow { color: #E0B04A; font-weight: 700; font-size: 24px; letter-spacing: .18em; text-transform: uppercase; }
+.h1 { font-weight: 900; font-size: 104px; line-height: 1.02; letter-spacing: -.035em; color: #E9EBF0; }
+.h2 { font-weight: 800; font-size: 76px; line-height: 1.06; letter-spacing: -.03em; color: #E9EBF0; }
+.sub { font-size: 34px; color: #B9C0CD; line-height: 1.4; font-weight: 500; }
+.goldtxt { color: #E0B04A; }
+
+/* scene 1 */
+#s1 .inner, #s8 .inner { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 0 150px; }
+#s1 svg.lines { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+#s1 svg.lines path { fill: none; stroke-width: 3; }
+#s1 .logo { width: 120px; height: 120px; margin-bottom: 40px; display: block; }
+#s1 .title { font-weight: 900; font-size: 112px; line-height: 1.02; letter-spacing: -.035em; max-width: 1500px; }
+#s1 .title .w { display: inline-block; }
+#s1 .presents { margin-top: 44px; display: flex; align-items: baseline; gap: 26px; }
+#s1 .presents .by { font-size: 38px; color: #B9C0CD; font-weight: 600; }
+#s1 .presents .word { font-size: 92px; font-weight: 900; letter-spacing: -.03em; color: #F6D98B; }
+
+/* scene 2 */
+#s2 .inner { position: absolute; inset: 0; display: grid; grid-template-columns: 640px 1fr; gap: 70px; align-items: center; padding: 120px 110px 90px; }
+.cards4 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.ccard { background: linear-gradient(180deg, #151C29, #10151F); border: 2px solid #222B3A; border-radius: 26px; padding: 34px 36px; position: relative; overflow: hidden; }
+.ccard .sw { width: 14px; height: 54px; border-radius: 6px; position: absolute; left: 0; top: 36px; }
+.ccard .sym { font-weight: 800; font-size: 40px; letter-spacing: -.01em; }
+.ccard .spec { font-family: "JetBrains Mono", monospace; font-size: 22px; color: #8A93A6; margin-top: 6px; }
+.ccard .px { font-family: "JetBrains Mono", monospace; font-size: 64px; font-weight: 600; margin-top: 22px; }
+.ccard .px small { font-size: 22px; color: #8A93A6; font-weight: 400; margin-left: 8px; }
+
+/* scene 3 */
+#s3 .inner { position: absolute; inset: 0; padding: 130px 110px 80px; }
+#s3 .top { display: flex; justify-content: space-between; align-items: flex-end; }
+#s3 .mode { font-weight: 700; font-size: 26px; color: #E0B04A; border: 2px solid rgba(224,176,74,.5); border-radius: 999px; padding: 10px 24px; }
+#s3 .chart { margin-top: 34px; background: #10151F; border: 2px solid #222B3A; border-radius: 26px; padding: 26px 30px 18px; position: relative; }
+#s3 .chart svg { width: 1640px; height: 560px; display: block; }
+#s3 .chart svg .gl line { stroke: #1B2332; stroke-width: 2; }
+#s3 .chart svg .gl text { fill: #8A93A6; font-size: 20px; font-family: "JetBrains Mono", monospace; }
+#s3 .chart svg path.series { fill: none; stroke-width: 3.5; stroke-linejoin: round; }
+#s3 .legend { display: flex; gap: 34px; margin-top: 12px; font-size: 24px; color: #B9C0CD; font-weight: 600; }
+#s3 .legend i { display: inline-block; width: 30px; height: 5px; border-radius: 3px; margin-right: 10px; vertical-align: middle; }
+#s3 .formula { position: absolute; right: 40px; top: 30px; font-family: "JetBrains Mono", monospace; font-size: 24px; color: #E9EBF0;
+  background: #151C29; border: 2px solid #222B3A; border-radius: 14px; padding: 12px 18px; }
+
+/* scene 4 */
+#s4 .inner { position: absolute; inset: 0; padding: 140px 110px 80px; }
+#s4 .scan { margin-top: 50px; width: 1060px; transform: scale(1.6); transform-origin: 0 0; }
+#s4 .scan .gl-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* scene 5 */
+#s5 .inner { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 820px; gap: 80px; align-items: center; padding: 120px 110px 80px; }
+#s5 .lbl { font-size: 26px; color: #8A93A6; text-transform: uppercase; letter-spacing: .12em; font-weight: 700; }
+#s5 .count { font-family: "JetBrains Mono", monospace; font-size: 150px; font-weight: 600; line-height: 1; margin: 22px 0 16px; color: #F6D98B; white-space: nowrap; }
+#s5 .count.neg { color: #F0566A; }
+#s5 .state { font-size: 34px; font-weight: 700; color: #E0B04A; }
+#s5 .rows { display: grid; gap: 20px; }
+#s5 .row { background: #10151F; border: 2px solid #222B3A; border-radius: 22px; padding: 26px 30px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+#s5 .row .n { font-size: 30px; font-weight: 700; } #s5 .row .n small { display: block; font-size: 22px; color: #8A93A6; font-weight: 500; margin-top: 4px; }
+#s5 .row .v { font-family: "JetBrains Mono", monospace; font-size: 34px; font-weight: 600; white-space: nowrap; }
+#s5 .row.final { border-color: rgba(240,86,106,.55); background: linear-gradient(90deg, rgba(240,86,106,.12), #10151F); }
+
+/* scene 6 */
+#s6 .inner { position: absolute; inset: 0; display: grid; grid-template-columns: 560px 1fr; gap: 70px; padding: 140px 110px 70px; }
+#s6 .tipbox { background: #10151F; border: 2px solid #222B3A; border-radius: 22px; padding: 26px 30px; min-height: 172px; }
+#s6 .tipbox .k { font-size: 20px; color: #8A93A6; text-transform: uppercase; letter-spacing: .1em; font-weight: 700; margin-bottom: 10px; }
+#s6 .tipbox .typed { font-size: 32px; line-height: 1.4; color: #E9EBF0; font-weight: 500; }
+#s6 .rule { margin-top: 20px; background: #151C29; border: 2px dashed rgba(224,176,74,.55); border-radius: 18px; padding: 18px 24px;
+  font-family: "JetBrains Mono", monospace; font-size: 22px; line-height: 1.45; color: #E9EBF0; }
+#s6 .vwrap { margin-top: 22px; width: 820px; transform: scale(1.32); transform-origin: 0 0; }
+#s6 .bigstamp { position: absolute; left: 112px; top: 650px; padding: 16px 36px; border: 8px solid #F0566A; border-radius: 22px;
+  color: #F0566A; font-family: "Inter", sans-serif; font-weight: 900; font-size: 100px; letter-spacing: .08em; line-height: 1;
+  text-transform: uppercase; background: rgba(240,86,106,.07); box-shadow: 0 0 60px rgba(240,86,106,.25); }
+#s6 .stats3 { margin-top: 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+#s6 .stats3 div { background: rgba(0,0,0,.25); border: 1px solid #222B3A; border-radius: 12px; padding: 12px 14px; }
+#s6 .stats3 span { display: block; font-size: 14px; color: #8A93A6; text-transform: uppercase; letter-spacing: .08em; font-weight: 700; }
+#s6 .stats3 b { font-family: "JetBrains Mono", monospace; font-size: 30px; font-weight: 600; }
+
+/* scene 7 */
+#s7 .inner { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 640px; gap: 60px; align-items: center; padding: 120px 140px 60px 110px; }
+#s7 .pw { transform: scale(1.16); transform-origin: 50% 50%; }
+#s7 .phone .chat { min-height: 520px; }
+#s7 .chips { display: flex; gap: 14px; margin-top: 34px; }
+#s7 .chips span { border: 2px solid #222B3A; background: #10151F; border-radius: 999px; padding: 12px 24px; font-size: 26px; color: #E9EBF0; font-weight: 600; }
+
+/* scene 8 */
+#s8 .lock { display: flex; align-items: center; gap: 36px; }
+#s8 .lock img { width: 150px; height: 150px; }
+#s8 .lock .word { font-size: 150px; font-weight: 900; letter-spacing: -.04em; color: #F6D98B; line-height: 1; }
+#s8 .tagline { margin-top: 30px; font-size: 52px; font-weight: 700; color: #E9EBF0; }
+#s8 .team { margin-top: 46px; font-size: 30px; color: #B9C0CD; font-weight: 600; }
+#s8 .powered { margin-top: 12px; font-family: "JetBrains Mono", monospace; font-size: 24px; color: #8A93A6; letter-spacing: .06em; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-width="1920" data-height="1080" data-duration="__TOTAL__">
+
+  <!-- persistent background -->
+  <div id="bg" class="clip" data-start="0" data-duration="__TOTAL__" data-track-index="0">
+    <div class="grid"></div><div class="glow"></div><div class="glow2"></div>
+    <div class="meta">MCX · 973 TRADING DAYS · SETTLEMENT 16 OCT 2026</div>
+  </div>
+
+  <div id="brand" class="clip" data-start="__S2__" data-duration="__BRAND_DUR__" data-track-index="1">
+    <div class="b">__LOGO__<span>GoldLens</span></div>
+    <div class="tag">HACK IN HILLS '26 · PS 03</div>
+  </div>
+
+  <!-- Scene 1: intro -->
+  <section id="s1" class="clip" data-start="__S1__" data-duration="__D1__" data-track-index="2"><div class="sc">
+    <svg class="lines" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+      <path class="hl" stroke="#E0B04A" d="M0,800 C300,760 470,860 760,790 S1230,560 1480,620 1800,470 1920,490"/>
+      <path class="hl" stroke="#5B8DEF" d="M0,840 C320,810 480,890 790,830 S1260,600 1510,650 1810,510 1920,525"/>
+      <path class="hl" stroke="#F07A8C" d="M0,875 C310,855 500,920 810,870 S1280,640 1530,685 1820,550 1920,560"/>
+      <path class="hl" stroke="#3CC9A7" d="M0,905 C330,890 515,950 830,905 S1300,680 1550,715 1830,585 1920,592"/>
+    </svg>
+    <div class="inner">
+      <div class="logo-w">__LOGO_BIG__</div>
+      <div class="title">__TITLE_WORDS__</div>
+      <div class="presents"><span class="by">Team TechFast presents</span><span class="word">GoldLens</span></div>
+    </div>
+  </div></section>
+
+  <!-- Scene 2: same gold, four prices -->
+  <section id="s2" class="clip" data-start="__S2__" data-duration="__D2__" data-track-index="2"><div class="sc">
+    <div class="inner">
+      <div><div class="eyebrow">The problem</div><div class="h1" style="margin-top:20px"><span class="ln">Same gold.</span><span class="ln">Four prices.</span></div>
+        <p class="sub" style="margin-top:28px">MCX lists four gold futures. Different lot sizes, quote units and purity.</p></div>
+      <div class="cards4">__CARDS__</div>
+    </div>
+  </div></section>
+
+  <!-- Scene 3: one scale -->
+  <section id="s3" class="clip" data-start="__S3__" data-duration="__D3__" data-track-index="2"><div class="sc">
+    <div class="inner">
+      <div class="top"><div><div class="eyebrow">The fix</div><div class="h2" style="margin-top:14px">One scale: ₹ per 10 g of 999 gold</div></div>
+        <div class="mode"><span class="mtxt">As quoted on MCX</span></div></div>
+      <div class="chart">
+        <div class="formula">price × (10 ÷ grams) × (999 ÷ purity)</div>
+        <svg viewBox="0 0 1640 560">__CHART__</svg>
+        <div class="legend">__LEGEND__</div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- Scene 4: scanner -->
+  <section id="s4" class="clip" data-start="__S4__" data-duration="__D4__" data-track-index="2"><div class="sc">
+    <div class="inner">
+      <div class="eyebrow">Relative-value scanner</div>
+      <div class="h2" style="margin-top:14px">Quiet by design.</div>
+      <p class="sub" style="margin-top:14px">An alert needs an unusual gap <span class="goldtxt">and</span> a trade that still pays after costs.</p>
+      <div class="scan">__SCANNER__</div>
+    </div>
+  </div></section>
+
+  <!-- Scene 5: honesty test -->
+  <section id="s5" class="clip" data-start="__S5__" data-duration="__D5__" data-track-index="2"><div class="sc">
+    <div class="inner">
+      <div><div class="eyebrow">The honesty test</div>
+        <div class="h2" style="margin-top:14px">Most backtests lie.</div>
+        <div class="lbl" style="margin-top:44px">Net profit · 6 pairs · 973 days</div>
+        <div class="count">__C0__</div>
+        <div class="state">Typical backtest</div></div>
+      <div class="rows">
+        <div class="row r1"><span class="n">Typical backtest<small>stitched prices, no costs</small></span><span class="v">__C0__</span></div>
+        <div class="row r2"><span class="n">+ real contracts &amp; carry<small>no fake jumps at expiry</small></span><span class="v">__C1__</span></div>
+        <div class="row r3 final"><span class="n">+ real trading costs<small>brokerage, taxes, slippage</small></span><span class="v" style="color:#F0566A">__C2__</span></div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- Scene 6: tip checker -->
+  <section id="s6" class="clip" data-start="__S6__" data-duration="__D6__" data-track-index="2"><div class="sc">
+    <div class="inner">
+      <div><div class="eyebrow">Tip Checker</div><div class="h2" style="margin-top:14px">A lie detector for trading tips.</div>
+        <p class="sub" style="margin-top:22px">Paste any tip, even in Hinglish. GoldLens turns it into a rule and tests it on real MCX data.</p></div>
+      <div>
+        <div class="tipbox"><div class="k">Pasted tip</div><div class="typed"></div></div>
+        <div class="rule">__RULE__</div>
+        <div class="vwrap"><div class="vin">__VERDICT__
+          <div class="stats3"><div><span>Claimed</span><b>__CLAIM__</b></div><div><span>Tipster-style</span><b style="color:#F0566A">__NAIVE__</b></div><div><span>Honest</span><b style="color:#F0566A">__HONEST__</b></div></div>
+        </div></div>
+      </div>
+      <div class="bigstamp">Busted</div>
+    </div>
+  </div></section>
+
+  <!-- Scene 7: morning brief -->
+  <section id="s7" class="clip" data-start="__S7__" data-duration="__D7__" data-track-index="2"><div class="sc">
+    <div class="inner">
+      <div><div class="eyebrow">Morning brief</div><div class="h1" style="margin-top:18px"><span class="ln">One message.</span><span class="ln">Every morning.</span></div>
+        <p class="sub" style="margin-top:26px">Gold price, signals, premiums, expiries and an AI take, on Telegram.</p>
+        <div class="chips"><span>Telegram</span><span>English</span><span>हिंदी</span></div></div>
+      <div class="pw">__PHONE__</div>
+    </div>
+  </div></section>
+
+  <!-- Scene 8: outro -->
+  <section id="s8" class="clip" data-start="__S8__" data-duration="__D8__" data-track-index="2"><div class="sc">
+    <div class="inner">
+      <div class="lock">__LOGO_LOCK__<span class="word">GoldLens</span></div>
+      <div class="tagline">Honest intelligence for gold traders.</div>
+      <div class="team">Team TechFast · Revant Raj</div>
+      <div class="powered">HACK IN HILLS '26 · POWERED BY TINYFISH · PS 03</div>
+    </div>
+  </div></section>
+
+  <!-- audio -->
+  <audio id="music" src="assets/music/happy-beats-business-moves-vol-12-by-ende-dot-app.mp3" data-start="0" data-duration="__TOTAL__"
+    data-track-index="10" data-volume="1" data-automation='__MUSIC_LANE__'></audio>
+__VO_TAGS__
+__SFX_TAGS__
+</div>
+
+<script>
+const T = __TIMING__;
+const PATHS = __PATHS__;
+const tl = gsap.timeline({ paused: true });
+const sc = (id) => `#${id} .sc`;
+
+// scene envelopes: content fades in after the cut and out before the next (no double exposure)
+T.scenes.forEach((s, i) => {
+  tl.fromTo(sc(s.id), { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, s.start + 0.02);
+  if (i < T.scenes.length - 1) tl.to(sc(s.id), { opacity: 0, duration: 0.3, ease: "power2.in" }, s.start + s.dur - 0.32);
+});
+tl.fromTo("#brand .b, #brand .tag", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, T.s[1] + 0.2);
+
+// background: slow breathing glows (finite repeats inside the root duration)
+tl.fromTo("#bg .glow", { scale: 0.92, opacity: 0.85 }, { scale: 1.08, opacity: 1, duration: 6, ease: "sine.inOut", yoyo: true, repeat: Math.max(0, Math.floor(T.total / 6) - 1) }, 0);
+tl.fromTo("#bg .glow2", { x: 0, y: 0 }, { x: 120, y: -60, duration: 8, ease: "sine.inOut", yoyo: true, repeat: Math.max(0, Math.floor(T.total / 8) - 1) }, 0);
+tl.fromTo("#bg .meta", { opacity: 0 }, { opacity: 1, duration: 0.8 }, 1.2);
+
+// ---- Scene 1
+const s1 = T.s[0];
+document.querySelectorAll("#s1 .hl").forEach((p) => { p.style.strokeDasharray = 2600; });
+tl.fromTo("#s1 .hl", { strokeDashoffset: 2600, opacity: 0.9 }, { strokeDashoffset: 0, duration: 2.6, ease: "power2.inOut", stagger: 0.15 }, s1 + 0.1);
+tl.fromTo("#s1 .logo", { scale: 0.4, rotation: -30, opacity: 0 }, { scale: 1, rotation: 0, opacity: 1, duration: 0.7, ease: "back.out(1.8)" }, s1 + 0.25);
+tl.fromTo("#s1 .title .w", { yPercent: 70, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.55, ease: "power3.out", stagger: 0.09 }, s1 + 0.45);
+tl.fromTo("#s1 .presents .by", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, T.k.presents);
+tl.fromTo("#s1 .presents .word", { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(2)" }, T.k.wordmark);
+
+// ---- Scene 2: cards one by one, each then held
+tl.fromTo("#s2 .h1, #s2 .eyebrow", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "power3.out", stagger: 0.08 }, T.s[1] + 0.2);
+tl.fromTo("#s2 .sub", { opacity: 0 }, { opacity: 1, duration: 0.5 }, T.s[1] + 0.8);
+T.k.cards.forEach((t, i) => {
+  tl.fromTo(`#s2 .ccard:nth-child(${i + 1})`, { y: 50, opacity: 0, scale: 0.94 }, { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, t);
+});
+
+// ---- Scene 3: draw quoted lines, then morph into one scale
+const s3 = T.s[2];
+tl.fromTo("#s3 .h2, #s3 .eyebrow", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out", stagger: 0.06 }, s3 + 0.15);
+tl.fromTo("#s3 .chart", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, s3 + 0.35);
+tl.fromTo("#s3 path.series", { opacity: 0 }, { opacity: 1, duration: 0.6, stagger: 0.12 }, s3 + 0.6);
+tl.fromTo("#s3 .formula", { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.5 }, T.k.morph - 0.6);
+const modeEl = document.querySelector("#s3 .mtxt"), mode = { p: 0 };
+tl.fromTo(mode, { p: 0 }, { p: 1, duration: 0.01, onUpdate: () => (modeEl.textContent = mode.p > 0.5 ? "Normalised by GoldLens" : "As quoted on MCX") }, T.k.morph + 0.5);
+tl.to("#s3 path.series", { attr: { d: (i) => PATHS.norm[i] }, duration: 1.4, ease: "power2.inOut", stagger: 0.07 }, T.k.morph);
+tl.to("#s3 .gn", { opacity: 1, duration: 0.5 }, T.k.morph + 0.6);
+tl.to("#s3 .gq", { opacity: 0, duration: 0.4 }, T.k.morph);
+tl.to("#s3 path.series", { attr: { "stroke-width": 4.5 }, duration: 0.4 }, T.k.morph + 1.6);
+
+// ---- Scene 4: scanner cards one by one, meters fill
+const s4 = T.s[3];
+tl.fromTo("#s4 .eyebrow, #s4 .h2, #s4 .sub", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out", stagger: 0.08 }, s4 + 0.15);
+T.k.scan.forEach((t, i) => {
+  tl.fromTo(`#s4 .gl-card:nth-child(${i + 1})`, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, t);
+  tl.fromTo(`#s4 .gl-card:nth-child(${i + 1}) .meter .fill`, { scaleX: 0 }, { scaleX: 1, transformOrigin: "0% 50%", duration: 0.8, ease: "power2.out" }, t + 0.3);
+  tl.fromTo(`#s4 .gl-card:nth-child(${i + 1}) .gauge .mk`, { x: 120 }, { x: 0, duration: 0.9, ease: "power3.out" }, t + 0.2);
+});
+
+// ---- Scene 5: counter steps down as each mistake is removed
+const s5 = T.s[4];
+tl.fromTo("#s5 .eyebrow, #s5 .h2", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out", stagger: 0.08 }, s5 + 0.15);
+tl.fromTo("#s5 .lbl, #s5 .count, #s5 .state", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.06 }, s5 + 0.6);
+const countEl = document.querySelector("#s5 .count"), stateEl = document.querySelector("#s5 .state");
+const fmt = (v) => { const s = v < 0 ? "−" : ""; const a = Math.abs(v); return a >= 1e5 ? `${s}₹${(a / 1e5).toFixed(2)} lakh` : `${s}₹${Math.round(a).toLocaleString("en-IN")}`; };
+const proxy = { v: T.nets[0] };
+const render = () => { countEl.textContent = fmt(proxy.v); countEl.classList.toggle("neg", proxy.v < 0); };
+tl.fromTo("#s5 .row.r1", { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, T.k.rows[0]);
+tl.fromTo("#s5 .row.r2", { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, T.k.rows[1]);
+tl.fromTo(proxy, { v: T.nets[0] }, { v: T.nets[1], duration: 1.2, ease: "power2.inOut", onUpdate: render, immediateRender: false }, T.k.rows[1] + 0.2);
+tl.fromTo("#s5 .row.r3", { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, T.k.rows[2]);
+tl.fromTo(proxy, { v: T.nets[1] }, { v: T.nets[2], duration: 1.2, ease: "power2.inOut", onUpdate: render, immediateRender: false }, T.k.rows[2] + 0.2);
+const st = { p: 0 }, STATES = ["Typical backtest", "+ real contracts & carry", "Honest result, after real costs"];
+const renderState = () => { const k = st.p < 0.5 ? 0 : st.p < 1.5 ? 1 : 2; stateEl.textContent = STATES[k]; stateEl.style.color = k === 2 ? "#F0566A" : "#E0B04A"; };
+tl.fromTo(st, { p: 0 }, { p: 1, duration: 0.01, onUpdate: renderState, immediateRender: false }, T.k.rows[1] + 0.2);
+tl.fromTo(st, { p: 1 }, { p: 2, duration: 0.01, onUpdate: renderState, immediateRender: false }, T.k.rows[2] + 0.8);
+tl.fromTo("#s5 .row.r3", { scale: 1 }, { scale: 1.03, duration: 0.3, yoyo: true, repeat: 1, ease: "power1.inOut", immediateRender: false }, T.k.truth);
+
+// ---- Scene 6: tip types out, rule appears, verdict + stamp
+const s6 = T.s[5];
+tl.fromTo("#s6 .eyebrow, #s6 .h2, #s6 .sub", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out", stagger: 0.08 }, s6 + 0.15);
+tl.fromTo("#s6 .tipbox", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 }, s6 + 0.3);
+const typed = document.querySelector("#s6 .typed"), chars = { n: 0 };
+tl.fromTo(chars, { n: 0 }, { n: T.tip.length, duration: T.k.typeDur, ease: "none", onUpdate: () => (typed.textContent = T.tip.slice(0, Math.round(chars.n))) }, T.k.type);
+tl.fromTo("#s6 .rule", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, T.k.rule);
+tl.fromTo("#s6 .vin", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, T.k.verdict);
+tl.fromTo("#s6 .flags div", { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.4, stagger: 0.25 }, T.k.verdict + 0.5);
+tl.fromTo("#s6 .stamp", { scale: 3, rotation: -28, opacity: 0 }, { scale: 1, rotation: 0, opacity: 1, duration: 0.42, ease: "back.out(2.2)" }, T.k.stamp);
+tl.fromTo("#s6 .bigstamp", { scale: 2.6, rotation: -26, opacity: 0 }, { scale: 1, rotation: -7, opacity: 1, duration: 0.4, ease: "back.out(2.4)" }, T.k.stamp);
+tl.fromTo("#s6 .verdict", { x: -8 }, { x: 0, duration: 0.45, ease: "elastic.out(1, .3)", immediateRender: false }, T.k.stamp + 0.3);
+
+// ---- Scene 7: phone + message lines
+const s7 = T.s[6];
+tl.fromTo("#s7 .eyebrow, #s7 .h1, #s7 .sub", { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out", stagger: 0.08 }, s7 + 0.15);
+tl.fromTo("#s7 .chips span", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.1 }, s7 + 0.9);
+tl.fromTo("#s7 .phone", { y: 80, rotation: -3, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 0.7, ease: "power3.out" }, s7 + 0.2);
+tl.fromTo("#s7 .phone .msg .ln", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.12, ease: "power2.out" }, s7 + 0.75);
+
+// ---- Scene 8: lockup
+const s8 = T.s[7];
+tl.fromTo("#s8 .lock img", { scale: 0.4, rotation: -40, opacity: 0 }, { scale: 1, rotation: 0, opacity: 1, duration: 0.7, ease: "back.out(1.8)" }, s8 + 0.2);
+tl.fromTo("#s8 .lock .word", { x: -40, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, s8 + 0.35);
+tl.fromTo("#s8 .tagline", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, s8 + 0.7);
+tl.fromTo("#s8 .team, #s8 .powered", { opacity: 0 }, { opacity: 1, duration: 0.6, stagger: 0.2 }, s8 + 1.4);
+
+window.__timelines["main"] = tl;
+</script>
+</body>
+</html>

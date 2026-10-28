@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GoldLens · Honest intelligence for MCX gold futures</title>
+<meta name="description" content="GoldLens puts MCX's four gold futures on one scale, finds the gaps that are actually unusual, and tests every idea honestly after real costs. Built for Hack in Hills '26, PS 03.">
+<meta property="og:title" content="GoldLens · Same gold. Four prices. One honest answer.">
+<meta property="og:description" content="Relative-value intelligence for MCX gold futures, with a lie detector for trading tips.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><circle cx='21' cy='21' r='15' fill='%23E0B04A'/><path d='M32 32l9 9' stroke='%23E0B04A' stroke-width='5' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+
+<header class="nav">
+  <a class="brand" href="#top" aria-label="GoldLens home">
+    <svg width="30" height="30" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="lg" x1="6" y1="4" x2="42" y2="44"><stop stop-color="#F8DE92"/><stop offset=".55" stop-color="#E0B04A"/><stop offset="1" stop-color="#9C6E1F"/></linearGradient></defs><circle cx="21" cy="21" r="15" fill="url(#lg)"/><path d="M14.5 24.5l4-4 3 2.5 6-6.5" stroke="#0A0D14" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M32 32l9 9" stroke="#E0B04A" stroke-width="4.5" stroke-linecap="round"/></svg>
+    <span>GoldLens</span>
+  </a>
+  <nav class="links" aria-label="Sections">
+    <a href="#problem">Problem</a><a href="#how">How it works</a><a href="#honesty">Honesty test</a>
+    <a href="#tips">Tip Checker</a><a href="#brief">Morning brief</a>
+  </nav>
+  <div class="nav-cta"><a class="btn btn-sm js-link-github" href="#" target="_blank" rel="noopener">GitHub</a><a class="btn btn-sm btn-gold js-link-app" href="/app">Launch app</a></div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <svg class="hero-lines" viewBox="0 0 1440 600" preserveAspectRatio="none" aria-hidden="true">
+      <path class="hl" d="M0,420 C200,380 320,460 520,400 S860,250 1040,300 1300,180 1440,200"/>
+      <path class="hl" d="M0,450 C220,420 330,480 540,430 S880,290 1060,330 1310,220 1440,235"/>
+      <path class="hl" d="M0,470 C210,450 350,500 560,455 S890,320 1070,355 1320,250 1440,262"/>
+      <path class="hl" d="M0,490 C230,470 360,520 580,480 S900,350 1090,380 1330,280 1440,290"/>
+    </svg>
+    <div class="wrap hero-inner">
+      <p class="eyebrow">Hack in Hills '26 · PS 03 · Commodity derivatives intelligence</p>
+      <h1 class="headline"><span class="w">Same gold.</span> <span class="w">Four prices.</span><br><span class="w gold">One honest answer.</span></h1>
+      <p class="lede">GoldLens puts MCX's four gold futures on one scale, flags the gaps that are actually unusual, and tests every idea the honest way: real contracts, real costs, no peeking at the future.</p>
+      <div class="cta">
+        <a class="btn btn-gold js-link-app" href="/app">Open the live app →</a>
+        <a class="btn js-link-video" href="#" target="_blank" rel="noopener">▶ Watch the demo</a>
+      </div>
+      <div class="stats">
+        <div><b data-count="meta.trading_days">0</b><span>trading days of real MCX data</span></div>
+        <div><b data-count="meta.contracts">0</b><span>contracts tracked by expiry</span></div>
+        <div><b data-count="meta.pairs">0</b><span>pairs scanned every day</span></div>
+        <div><b data-count-fixed="44">0</b><span>automated rigor tests</span></div>
+      </div>
+    </div>
+    <div class="ticker" aria-hidden="true"><div class="track"></div></div>
+  </section>
+
+  <!-- PROBLEM: four lines collapse into one -->
+  <section id="problem" class="problem">
+    <div class="wrap problem-grid">
+      <div class="problem-copy">
+        <p class="eyebrow">The problem</p>
+        <div class="steps">
+          <div class="step" data-step="0"><h2>MCX sells the same gold four ways.</h2>
+            <p>GOLDM in 100 g lots, GOLDTEN in 10 g, GOLDGUINEA in 8 g, GOLDPETAL in 1 g. Quoted per 10 g, per 8 g, per 1 g, at 995 or 999 purity. On screen they look like four unrelated markets.</p></div>
+          <div class="step" data-step="1"><h2>GoldLens puts them on one scale.</h2>
+            <p>Every price becomes rupees per 10 g of 999 gold: price × (10 ÷ quoted grams) × (999 ÷ purity). Watch four lines become one.</p></div>
+          <div class="step" data-step="2"><h2>The gaps that remain are the signal.</h2>
+            <p>A few basis points of difference are left. GoldLens asks one question about each: is this gap unusual for <em>this pair</em>, and would closing it pay after costs?</p></div>
+        </div>
+      </div>
+      <figure class="chart-card">
+        <figcaption><span class="cap-title">Front-month prices, last 12 months</span><span class="cap-mode">As quoted on MCX</span></figcaption>
+        <svg class="morph" viewBox="0 0 800 420" role="img" aria-label="Four MCX gold futures, first as quoted, then normalised onto one scale"></svg>
+        <div class="legend"></div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" class="how">
+    <div class="wrap">
+      <p class="eyebrow">How it works</p>
+      <h2 class="section-title">From four messy prices to one decision, every day.</h2>
+      <div class="cards">
+        <article class="card"><span class="num">01</span><h3>Ingest &amp; guard</h3><p>MCX's daily Bhavcopy, with date checks, holiday detection and stale-price quarantine. Every contract tracked by its own expiry.</p></article>
+        <article class="card"><span class="num">02</span><h3>Normalise &amp; fit the curve</h3><p>One scale, then a daily fair curve: spot, carry, and each contract's premium, so different expiries compare fairly.</p></article>
+        <article class="card"><span class="num">03</span><h3>Scan, quietly</h3><p>An alert needs an unusual gap, liquid legs, and an expected reversion worth 1.5× round-trip costs. Most days: silence.</p></article>
+        <article class="card"><span class="num">04</span><h3>Explain in plain words</h3><p>An AI analyst writes the brief in English or Hindi, using only numbers GoldLens computed. It explains; it never calculates.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- HONESTY TEST: pinned counter -->
+  <section id="honesty" class="honesty">
+    <div class="wrap honesty-grid">
+      <div>
+        <p class="eyebrow">The honesty test</p>
+        <h2 class="section-title">Where does a backtest's profit come from?</h2>
+        <p class="muted">The same strategy, replayed on <span data-text="meta.trading_days"></span> days with one common mistake removed at each step.</p>
+        <ol class="ladder"></ol>
+      </div>
+      <div class="meter-card">
+        <div class="meter-label">Net profit, all pairs</div>
+        <div class="big-num" aria-live="polite">₹0</div>
+        <div class="meter-step">Naive backtest</div>
+        <div class="bar-track"><div class="bar-fill"></div></div>
+        <p class="meter-note">Every backtest flaw removed. What's left after real costs is the truth.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOLD BET -->
+  <section class="goldbet">
+    <div class="wrap">
+      <p class="eyebrow">Honest attribution</p>
+      <h2 class="section-title">The naive "edge" was a bet on gold.</h2>
+      <div class="bet-grid">
+        <div class="bet bad"><span class="bet-label">Naive backtest</span><b class="bet-num" data-bet="naive_g">0 g</b>
+          <span class="bet-sub">of hidden gold exposure · R² vs gold <span data-text="attribution.naive_r2"></span></span>
+          <div class="bet-track"><i></i></div></div>
+        <div class="bet good"><span class="bet-label">GoldLens, honest</span><b class="bet-num" data-bet="honest_g">0 g</b>
+          <span class="bet-sub">R² vs gold <span data-text="attribution.honest_r2"></span>: profit comes from the spread, not gold's direction</span>
+          <div class="bet-track"><i></i></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIP CHECKER -->
+  <section id="tips" class="tips">
+    <div class="wrap tips-grid">
+      <div>
+        <p class="eyebrow">Tip Checker</p>
+        <h2 class="section-title">A lie detector for trading tips.</h2>
+        <p class="muted">SEBI found about 9 in 10 individual F&amp;O traders lost money from FY22 to FY24, while "guaranteed" tips flood Telegram. Paste any tip about MCX gold contracts: GoldLens turns it into a precise rule and tests it twice, the tipster's way and the honest way. It even reads Hinglish.</p>
+        <ul class="tip-points">
+          <li>Instant pattern reader, AI for messy wording</li>
+          <li>Every field of the rule stays editable</li>
+          <li>Shows which mistake created the fake profit</li>
+        </ul>
+      </div>
+      <div class="tip-demo">
+        <div class="tip-input"><span class="tip-label">Pasted tip</span><p class="typed"></p><span class="caret"></span></div>
+        <div class="tip-rule"><span class="tip-label">How GoldLens read it</span><p></p></div>
+        <div class="verdict"><span class="stamp">Busted</span>
+          <h3>❌ Doesn't survive real trading</h3>
+          <div class="vs3">
+            <div><span>Claimed</span><b class="claimed">0%</b></div>
+            <div><span>Tipster-style</span><b class="naive">0%</b></div>
+            <div><span>Honest</span><b class="honest">0%</b></div>
+          </div>
+          <div class="flags"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MORNING BRIEF -->
+  <section id="brief" class="brief">
+    <div class="wrap brief-grid">
+      <div class="phone" aria-label="Telegram morning message preview">
+        <div class="scr">
+          <div class="top"><span>08:30</span><span>5G ▮▮▮</span></div>
+          <div class="bar"><div class="av">🪙</div><div class="nm">GoldLens Bot<small>bot</small></div></div>
+          <div class="chat"><div class="msg"></div></div>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">Morning brief</p>
+        <h2 class="section-title">One message. Every morning. On your phone.</h2>
+        <p class="muted">Where gold is, whether there's a trade today, who's trading rich, which contracts expire soon, and a short AI take, all on one lock screen. Connect your own Telegram bot from the dashboard in under a minute.</p>
+        <div class="chips"><span>Telegram Bot API</span><span>Once per settlement</span><span>English · Hindi</span><span>Never spammy</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREMIUM STORY -->
+  <section class="premium">
+    <div class="wrap">
+      <p class="eyebrow">Found in the data</p>
+      <h2 class="section-title">The small contracts went rich in the 2026 gold rush.</h2>
+      <p class="muted">Monthly premium of GOLDGUINEA and GOLDPETAL over GOLDM, after units, purity and carry are removed. Retail demand pushed it past +300 bps. And the premium never fully closes, even at expiry, which is why GoldLens scores every gap against its own history instead of assuming it's free money.</p>
+      <div class="premium-chart"><svg viewBox="0 0 900 260" role="img" aria-label="Monthly premium of GOLDGUINEA and GOLDPETAL over GOLDM"></svg></div>
+    </div>
+  </section>
+
+  <!-- RIGOR -->
+  <section class="rigor">
+    <div class="wrap">
+      <p class="eyebrow">Built to be trusted</p>
+      <h2 class="section-title">Rigor you can check.</h2>
+      <div class="checks">
+        <div><b>No look-ahead</b><span>Walk-forward replay; a test proves future data never changes past P&amp;L.</span></div>
+        <div><b>Real contracts</b><span>P&amp;L on the contracts actually held, rolled before the tender period.</span></div>
+        <div><b>Real costs</b><span>Brokerage, exchange fees, CTT, stamp duty, GST and slippage on every fill.</span></div>
+        <div><b>Liquidity aware</b><span>Zero-volume "prices" never create a signal.</span></div>
+        <div><b>Honest attribution</b><span>Daily P&amp;L regressed on gold, so a hidden gold bet can't pass as edge.</span></div>
+        <div><b>Honest outcome</b><span>If no edge survives costs, GoldLens says so.</span></div>
+      </div>
+      <div class="stack"><span>Python</span><span>pandas</span><span>NumPy</span><span>statsmodels</span><span>Streamlit</span><span>Plotly</span><span>GSAP</span><span>Claude · Grok · OpenRouter</span><span>Telegram Bot API</span><span>Upstox API</span></div>
+    </div>
+  </section>
+
+  <!-- TEAM / CTA -->
+  <section class="final">
+    <div class="wrap final-inner">
+      <h2 class="headline small">Most tools sell you an edge.<br><span class="gold">GoldLens tells you the truth.</span></h2>
+      <div class="cta">
+        <a class="btn btn-gold js-link-github" href="#" target="_blank" rel="noopener">View the code on GitHub</a>
+        <a class="btn js-link-app" href="/app">Open the app</a>
+      </div>
+      <p class="team">Team <b>TechFast</b> · Revant Raj · Md. Aftab</p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Data: MCX daily Bhavcopy, <span data-text="meta.first"></span> to <span data-text="meta.last"></span>.</span>
+  <span>Statistical analysis for education, not investment advice.</span>
+</footer>
+
+<script src="data.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

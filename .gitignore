@@ -1,0 +1,24 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+data/download.log
+data/briefs/
+data/telegram_state.json
+data/notify.log
+.claude/
+
+# node tooling for the deck and videos
+node_modules/
+deck/site.json
+deck/render/
+
+# rendered media and their build assets (music, voice, recordings); the scripts that make them are kept
+*.mp4
+*.wav
+*.log
+brag-output/composition/
+brag-output/work/scaffold/
+demo-output/composition/
+demo-output/rec/
+demo-output/shots/

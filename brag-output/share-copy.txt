@@ -1,0 +1,1 @@
+Most trading backtests lie. GoldLens puts MCX's four gold futures on one scale, tests every idea after real trading costs, and even busts "guaranteed" tips. Built by Team TechFast for Hack in Hills, powered by TinyFish.
